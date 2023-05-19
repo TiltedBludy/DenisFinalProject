@@ -1,0 +1,110 @@
+﻿<Page x:Class="WpfApp6.Pages.AdminPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfApp6.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450"
+      d:DesignWidth="800"
+      Title="AdminPage"
+      Loaded="listViewDataLoaded">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition/>
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,0">
+
+            <TextBlock Margin="0,2" Style="{StaticResource TextBlockStyle}" x:Name="textBlockCountSortProduct"></TextBlock>
+            <TextBlock Margin="0,2" Style="{StaticResource TextBlockStyle}" x:Name="textBlockCountAllProduct"></TextBlock>
+
+        </StackPanel>
+        
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20,0" Width="200">
+            <TextBlock Style="{StaticResource TextBlockStyle}" HorizontalAlignment="Center" Margin="0,2" >Поиск товара</TextBlock>
+            <TextBox Style="{StaticResource TextBoxStyle}" PreviewTextInput="txbSearchProduct_PreviewTextInput"  x:Name="txbSearchProduct" Margin="0,2" ></TextBox>
+        </StackPanel>
+
+
+        <ListView x:Name="listViewData" Margin="10,0" Grid.Row="1">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition MinWidth="260" Width="auto"/>
+                            <ColumnDefinition MinWidth="400" Width="auto"/>
+                            <ColumnDefinition MinWidth="200" Width="auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Image Source="{Binding ProductPhoto}" Margin="10,10,10,10" Width="200" Height="150"/>
+
+                        <StackPanel Grid.Column="1">
+
+                            <TextBlock Style="{StaticResource TextBlockStyle}">
+                                <Run>Категория: </Run>
+                                <Run Text="{Binding ProductCategory}"></Run>
+                            </TextBlock>
+
+                            <TextBlock Style="{StaticResource TextBlockStyle}">
+                                <Run>Название: </Run>
+                                <Run Text="{Binding ProductName}"></Run>
+                            </TextBlock>
+
+                            <TextBlock Style="{StaticResource TextBlockStyle}">
+                                <Run>Производитель: </Run>
+                                <Run Text="{Binding ProductManufacturer}"></Run>
+                            </TextBlock>
+
+                            <TextBlock Style="{StaticResource TextBlockStyle}">
+                                <Run>Цена: </Run>
+                                <Run Text="{Binding ProductCost}"></Run>
+                                <Run> руб</Run>
+                            </TextBlock>
+
+                            <TextBlock Style="{StaticResource TextBlockStyle}">
+                                <Run>Скидка: </Run>
+                                <Run Text="{Binding ProductDiscountAmount}"></Run>
+                                <Run> руб</Run>
+                            </TextBlock>
+
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="2">
+
+                            <TextBlock Style="{StaticResource TextBlockStyle}">
+                                <Run>На складе: </Run>
+                                <Run Text="{Binding ProductQuantityInStock}"></Run>
+                                <Run> шт</Run>
+                            </TextBlock>
+
+                            <TextBlock Style="{StaticResource TextBlockStyle}">
+                                <Run>Статус: </Run>
+                                <Run Text="{Binding ProductStatus}"></Run>
+                            </TextBlock>
+
+                        </StackPanel>
+                        
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="20,0" Grid.Row="2">
+            <Button Style="{StaticResource ButtonStule}" Click="btnDeleteProduct_Click" Margin="10,10">Удалить</Button>
+            <Button Style="{StaticResource ButtonStule}" Click="btnAddProduct_Click" Margin="10,10">Добавить</Button>
+            <Button Style="{StaticResource ButtonStule}" Click="btnEditProduct_Click" Margin="10,10">Изменить</Button>
+
+        </StackPanel>
+
+        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,0" Grid.Row="2">
+            <RadioButton Checked="rbSortDown_Checked" x:Name="rbSortDown" FontFamily="Ravie" FontSize="17">Сначала дорогие</RadioButton>
+            <RadioButton Checked="rbSortUp_Checked" x:Name="rbSortUp" FontFamily="Ravie" FontSize="17">Сначала недорогие</RadioButton>
+
+        </StackPanel>
+
+    </Grid>
+</Page>
